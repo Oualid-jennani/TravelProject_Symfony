@@ -1,0 +1,105 @@
+<header>
+    <div class="container">
+        <div class="nav-content">
+            <nav class="navbar navbar-expand-lg navbar-light">
+
+                <a class="navbar-brand" href="{{ path('index') }}" data-value="0">Let's Go</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cnav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="cnav">
+
+                    <div class="mr-auto"></div>
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('index') }}" data-value="0">Home<span></span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('about') }}" data-value="0">About Us<span></span></a>
+                        </li>
+
+
+                        {% if not app.user %}
+
+                            <li class="nav-item">
+                                <a href="{{ path("registrationCustomer") }}" class="btn btn-public text-white">inscription</a>
+                                <a href="{{ path("security_login") }}" class="btn btn-public text-white">Connexion</a>
+                            </li>
+
+                        {% else %}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('suggestTravel') }}" data-value="1">Proposer un trajet<span></span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('account-info') }}" data-value="1">Profil<span></span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ path("security_logout") }}" class="btn btn-public text-white">Déconnexion</a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!--
+<header>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4 col-12">
+                <a class="header-content-logo" href="{{ path('index') }}" data-value="0">Let's Go</a>
+
+                <div class="user-connect">
+                    {% if not app.user %}
+                        <a href="{{ path("security_login") }}" class="btn btn-public text-white">Login</a>
+                    {% else %}
+                        <a href="login-signup.html" class="user-connect-logo"><i class="fa fa-user-circle"></i></a>
+                    {% endif %}
+                </div>
+
+            </div>
+
+
+            <div class="col-md-8 col-12">
+                <div class="user-action">
+                    <div class="user-action-link">
+                        <ul>
+
+                            <li>
+                                {% if not app.user %}
+                                    <a href="{{ path("security_login") }}" class="btn btn-public text-white">Login</a>
+                                {% else %}
+                                    <a href="#"><i class="ti-user"></i></a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</header>
+
+-->
+

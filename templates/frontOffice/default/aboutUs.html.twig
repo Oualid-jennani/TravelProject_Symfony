@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <!-- =========================== Breadcrumbs =================================== -->
+    <div class="breadcrumbs_wrap dark">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="text-center">
+                        <h2 class="breadcrumbs_title">C'est quoi Let's Go ?</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="ti-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">
+Boutique
+</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+À propos de nous</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- =========================== Breadcrumbs =================================== -->
+
+
+    <!-- =========================== About Us =================================== -->
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <h2>Let's Go</h2>
+                    <p>
+                        <b>Let's Go</b> est une nouvelle manière de voyager ensembles, en toute sécurité et convivialité Parce que parfois, prendre la route vers une autre ville n’est pas si facile, nous avons développé l’application Let's Go qui permet à des conducteurs et à des passagers allant vers la même destination d’y aller ensemble, au meilleur prix et dans les meilleures conditions.
+                        <br><br>
+                        Vous avez une voiture et vous prenez souvent la route ?
+                        Optez pour le co-voiturage Let's Go pour réduire vos coûts de transport et faites-vous accompagner de personnes partageant les mêmes critères de voyage que vous !
+                        <br><br>
+                        Vous souhaitez partir en voyage et les moyens de transport classiques ne vous conviennent pas ?
+                        Avec le co-voiturage Let's Go, vous trouvez des offres de trajets et vous choisissez celle qui vous correspond, au meilleur prix et en toute sécurité !
+                        <br><br>
+                        La sécurité avant tout !
+                        Parce que votre sécurité est notre priorité, nous y accordons une grande importance. C’est pour cela que nous vérifions le profil de tous les conducteurs et passagers sur notre plateforme et nous faisons un suivi régulier avec nos utilisateurs.
+                        <br><br>
+                        Let's Go est un service de DigiServ SAS, filiale de BMCI et du Groupe BNP Paribas, spécialisé dans le développement de services digitaux pour faciliter le quotidien des marocains.
+                    </p>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 ml-auto">
+                    <div class="about_video">
+                        <div class="thumb">
+                            <img class="pro_img img-fluid w100" src="https://via.placeholder.com/626x417" alt="7.jpg">
+                            <div class="overlay_icon">
+                                <div class="bb-video-box">
+                                    <div class="bb-video-box-inner">
+                                        <div class="bb-video-box-innerup">
+                                            <a href="https://www.youtube.com/watch?v=A8EI6JaFbv4" data-toggle="modal" data-target="#popup-video" class="theme-cl"><i class="ti-control-play"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- =========================== About Us =================================== -->
+
+{% endblock %}
+{% block javascripts %}
+
+    <!-- my script -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <!-- my script -->
+
+    <script>
+
+        $('.my-circle-body').click(function () {
+            $('#form-travel').submit();
+        })
+    </script>
+
+{% endblock %}

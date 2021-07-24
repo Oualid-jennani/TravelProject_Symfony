@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <!-- =========================== Breadcrumbs =================================== -->
+    <div class="breadcrumbs_wrap dark">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="text-center">
+                        <h2 class="breadcrumbs_title">{% trans %}Paramètres du compte{% endtrans %}</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="ti-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">{% trans %}Mon compte{% endtrans %}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{% trans %}Paramètres du compte{% endtrans %}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- =========================== Breadcrumbs =================================== -->
+
+
+    <!-- =========================== Account Settings =================================== -->
+    <section class="gray">
+        <div class="container">
+            <div class="row">
+
+                {% include "frontOffice/master/dashboardNav.html.twig" %}
+
+                <div class="col-lg-8 col-md-9">
+                    <!-- Total Items -->
+                    <div class="card style-2">
+                        <div class="card-header">
+                            <h4 class="mb-0">{% trans %}Historique{% endtrans %}</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Ville de départ </th>
+                                        <th>Ville d'arrivée </th>
+                                        <th> Date</th>
+                                        <th>Nombre de Places</th>
+                                        <th>detail</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for travel in travels %}
+
+                                        <tr>
+                                            <td>{{ travel.start.name }}</td>
+                                            <td>{{ travel.finish.name }}</td>
+                                            <td>{{ travel.startDate|date("d/m/Y") }}</td>
+                                            <td>{{ travel.placeNumber }}</td>
+                                            <td>
+                                                <a href='{{ path('detailTravel',{'id':travel.id}) }}'><i class='far fa-eye ms-text-success'></i></a>
+                                            </td>
+                                            <td>
+                                                <a href='{{ path('deleteTravel',{'id':travel.id}) }}'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- =========================== Account Settings =================================== -->
+{% endblock %}

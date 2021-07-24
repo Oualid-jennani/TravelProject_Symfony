@@ -1,0 +1,55 @@
+<aside id="ms-side-nav" class="side-nav fixed ms-aside-scrollable ms-aside-left">
+    <!-- Logo -->
+    <div class="logo-sn bg-white ms-d-block-lg">
+        <a class="pl-0 ml-0 text-center" href="index.html">
+            <img src="{{ asset('dashAssets/img/logo.png') }}" alt="logo">
+        </a>
+    </div>
+    <!-- Navigation -->
+    <ul class="accordion ms-main-aside fs-14" id="side-nav-accordion">
+
+        <!-- Dashboard -->
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false" aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
+            </a>
+            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
+                <li> <a href="{{ path('dashboardAdmin') }}">Costic</a></li>
+            </ul>
+        </li>
+        <!-- /Dashboard -->
+
+        <!-- Pays & City -->
+        <li class="menu-item">
+            <a href="javascript:void(0)" class="has-chevron" data-toggle="collapse" data-target="#CountryCity" aria-expanded="false" aria-controls="CountryCity"> <span><i class="far fa-building fs-16"></i>Country & City </span>
+            </a>
+            <ul id="CountryCity" class="collapse" aria-labelledby="CountryCity" data-parent="#side-nav-accordion">
+                <li> <a href="{{ path('listCountries') }}">Pays</a></li>
+                <li> <a href="{{ path('listCities') }}">Villes</a></li>
+            </ul>
+        </li>
+        <!-- /Pays & City -->
+
+        <!-- Menus -->
+        <li class="menu-item">
+            <a href="javascript:void(0)" class="has-chevron" data-toggle="collapse" data-target="#Travels" aria-expanded="false" aria-controls="Travels"> <span><i class="fa fa-car fs-16"></i> Travels </span>
+            </a>
+            <ul id="Travels" class="collapse" aria-labelledby="Travels" data-parent="#side-nav-accordion">
+                <li> <a href="{{ path('listTravels') }}">Liste des trajet</a></li>
+                <li> <a href="{{ path('listSuggestTravels') }}">Suggest Travels List</a></li>
+                <li> <a href="{{ path('addTravel') }}">Ajouter un trajet</a></li>
+            </ul>
+        </li>
+        <!-- /Menus -->
+
+        <!-- Customers   -->
+        <li class="menu-item">
+            <a href="javascript:void(0)" class="has-chevron" data-toggle="collapse" data-target="#Customers" aria-expanded="false" aria-controls="Customers"> <span><i class="fas fa-user-circle fs-16"></i> Customers </span>
+            </a>
+            <ul id="Customers" class="collapse" aria-labelledby="Customers" data-parent="#side-nav-accordion">
+                <li> <a href="{{ path('customers_list') }}">Customers</a></li>
+            </ul>
+        </li>
+        <!-- /Customers  -->
+
+    </ul>
+</aside>

@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    </style>
+{% endblock %}
+
+{% block body %}
+
+
+    <section class="food-theme home">
+        <div class="container">
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-8 col-sm-10 col-12 mx-auto home-text">
+
+                    <h1>Réserver un trajet en ligne </h1>
+
+                    <h4>Morocco / All Cities</h4>
+
+                    {% if app.user %}
+                        {{ form_start(form,{'attr':{'id':'form-travel'}}) }}
+                            <div class="search-by-city">
+
+                            <div class="row">
+
+                                <div class="col-md-5 col-10 m-auto">
+                                    <label>Ville de depart :</label>
+                                    <div class="my-select my-select-city">
+                                        {{ form_widget(form.start,{'attr':{'class':'my-select'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 col-10 m-auto">
+                                    <label>Ville d'arrivée:</label>
+                                    <div class="my-select my-select-city">
+                                        {{ form_widget(form.finish,{'attr':{'class':'my-select'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-3"></div>
+
+                                <div class="col-md-5 col-10 m-auto">
+                                    <label> Date :</label>
+                                    <div class="input-group">
+                                        {{ form_widget(form.startDate , { 'attr' : {'class':'form-control'} }) }}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        {{ form_end(form) }}
+                    {% endif %}
+
+
+
+
+                </div>
+            </div>
+
+            {% if app.user %}
+                <div class="my-circles">
+
+                    <label>Rechercher : </label>
+
+                    <div class="my-circle">
+                        <div class="my-circle-content">
+                            <div class="my-circle-body">
+                                <input type="radio" class="store-radio"  name="store" value="chef" hidden>
+                                <img src="assets/img/logo.png">
+                                <h5>chercher</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="pl"><div></div></div>
+    </section>
+
+
+    <!----------------------------------------------------------------------------------------------------->
+    <!----------------------------------------------------------------------------------------------------->
+
+
+    <section class="store">
+        <!-- container -->
+        <div class="container">
+            <div class="title-section title-featured">
+                {% if listTravel == "Default" %}
+                    <h2>Featured Travels</h2>
+                {% elseif listTravel == "Search" %}
+                    <h2>Travels : From {{ travel.start.name }} To {{ travel.finish.name }}</h2>
+                {% endif %}
+            </div>
+            <!-- row -->
+            <div class="row">
+
+
+                {% for travel in travels %}
+                    <!-- banner -->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="banner-store" >
+
+                            <a href="javascript:void(0)">
+                                <div class="banner-store-body">
+                                    <img src="{{ asset('images/travel/') }}{{ travel.images[0] }}" alt="">
+                                    <div class="banner-store-caption text-center">
+                                        <h4 class="banner-store-title">{{ travel.nbrPlcReserve}} Places Vides</h4>
+
+                                        <div class="text-white"><span>{{ travel.start.name }}</span> To <span>{{ travel.finish.name }}</span></div>
+
+                                        <div class="text-white"><span>Date : {{ travel.startDate|date("d/m/Y") }}</span></div>
+
+                                        <div><a href="{{ path("Reserve",{'id': travel.id}) }}" class="btn btn-public text-white">Réserver</a></div>
+
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+                    <!-- /banner -->
+
+                {% endfor %}
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </section>
+
+
+
+    <section class="services" id="services">
+
+        <!--<div class="pl-services"><div></div></div>-->
+
+        <div class="container">
+            <div class="title-section title-services"><h2>Opportunités</h2></div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 Opportunity">
+                    <div class="services-box">
+                        <div class="services-box-icon">
+                            <div class="icon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                        </div>
+
+                        <div class="services-content">
+                            <h5>Client</h5>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                            <div class="get-started">
+                                <a href="{{ path('registrationCustomer') }}" class="btn-started">Get Started</a>
+                            </div>
+                        </div>
+                    </div> <!-- feature-box-02 -->
+                </div> <!-- col -->
+
+
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+{% endblock %}
+{% block javascripts %}
+
+    <!-- my script -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <!-- my script -->
+
+    <script>
+
+        $('.my-circle-body').click(function () {
+            $('#form-travel').submit();
+        })
+    </script>
+
+{% endblock %}
+

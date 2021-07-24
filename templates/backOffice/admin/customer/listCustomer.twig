@@ -1,0 +1,54 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-arrow has-gap has-bg">
+                <li class="breadcrumb-item"><a href="{{ path('dashboard') }}"><i class="material-icons">Acceuil</i>{% trans %}Home{% endtrans %}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">{% trans %}Customers{% endtrans %}</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">{% trans %}List Of Customers{% endtrans %}</a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-8 mx-auto">
+            <div class="ms-panel">
+                <div class="ms-panel-header mb-4">
+                    <h6 class="float-left">{% trans %}Customers{% endtrans %}</h6>
+                    {% for  message in app.flashes('success') %}
+                        <div class=" text-success font-weight-bold float-right">{{ message }}</div>
+                    {% endfor %}
+
+                    {% for  message in app.flashes('error') %}
+                        <div class=" text-danger font-weight-bold float-right">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                <div class="ms-panel-body">
+                    <div class="table-responsive">
+                        <table id="example4" class="table table-hover thead-primary text-center">
+                            <thead>
+                            <tr>
+                                <th scope="col">Utilisateur</th>
+                                <th scope="col">Téléphone mobile</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for customer in customers |sort|reverse %}
+                                <tr>
+                                    <td>{{ customer.username }}</td>
+                                    <td>{{ customer.phone }}</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{%  endblock %}

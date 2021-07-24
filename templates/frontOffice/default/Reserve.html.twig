@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <!-- =========================== Product Detail =================================== -->
+    <section>
+        <div class="container">
+
+            <div class="row">
+                {% if travel|default(null) %}
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="sp-loading"><img src="https://via.placeholder.com/1100x1220" alt=""><br>Telecharger des images  </div>
+                        <div class="sp-wrap">
+                            {% for image in travel.images |sort|reverse|slice(0, 6) %}
+                                <a href="{{ asset('images/travel/') }}{{ image }}"><img src="{{ asset('images/travel/') }}{{ image }}" alt=""></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="woo_pr_detail">
+
+                            <h2 class="woo_pr_title">{{ travel.start.name }} à {{ travel.finish.name }}</h2>
+                            <div class="col-12 mt-3"></div>
+                            <h2 class="">Date : {{ travel.startDate|date("d/m/Y") }}</h2>
+
+                            {% if travel.price|default(null) %}
+                                <div class="woo_pr_price">
+                                    <div class="woo_pr_offer_price">
+                                        <h3 id="priceMenu">{{ travel.price }}</h3>
+                                        <span class="ml-3">dh</span>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <h3 class="">{{ travel.nbrPlcReserve}} Places Vides</h3>
+
+
+
+                            {% if travel.user|default(null) %}
+                                <p>
+                                    Conducteur : {{ travel.user.username }}
+                                    <br>
+                                    Téléphone  : {{ travel.user.phone }}
+                                </p>
+                            {% endif %}
+                            <div class="woo_pr_short_desc">
+                                <h5>Description</h5>
+                                <p>{{ travel.description }}</p>
+                            </div>
+
+                            {{ form_start(form) }}
+                                {{ form_widget(form.placeNumber,{'attr':{'class':'form-control qua_pr mb-2','value':'1','min':'1','max':travel.nbrPlcReserve}}) }}
+                                <div><button class="btn btn-public text-white">Réserver</button></div>
+                            {{ form_end(form) }}
+
+
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- =========================== Product Detail =================================== -->
+
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+
+
+{% endblock %}

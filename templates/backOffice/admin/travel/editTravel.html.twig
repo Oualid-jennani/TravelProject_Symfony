@@ -1,0 +1,138 @@
+{% extends 'baseDash.html.twig' %}
+
+{% block body %}
+
+
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-arrow has-gap has-bg">
+                <li class="breadcrumb-item"><a href="{{ path('dashboardAdmin') }}"><i class="material-icons">home</i> Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('listTravels') }}">Trajet</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Modifier un trajet</a></li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-8 mx-auto">
+            <div class="ms-panel ms-panel-fh">
+                <div class="ms-panel-header mb-4">
+                    <h6 class="float-left">Modifier un trajet</h6>
+
+                    {% for  message in app.flashes('success') %}
+                        <div class=" text-success float-right">{{ message }}</div>
+                    {% endfor %}
+
+                    {% for  message in app.flashes('error') %}
+                        <div class=" text-success float-right">{{ message }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="ms-panel-body">
+                    {{ form_start(form,{'attr':{'class':'needs-validation clearfix','enctype':'multipart/form-data'}}) }}
+                    <div class="text-danger">{{ form_errors(form)}}</div>
+                    <div class="form-row">
+
+                        <div class="col-12">
+                            <label for="validationCustom01">Images</label>
+
+                            <div class="list-images">
+                                <div class="my-list-images">
+                                    <section class="errorImage">
+                                        {% for  message in app.flashes('countFlashImage') %}
+                                            {% if message|number_format > 1 %}
+                                                <div class="text-warning font-weight-bold errorImage"><i class="fas fa-exclamation-triangle"></i>
+                                                    {{ message }} {% trans%}wrong images{% endtrans %}
+                                                </div>
+                                            {% elseif message|number_format == 1%}
+                                                <div class="text-warning font-weight-bold errorImage"><i class="fas fa-exclamation-triangle"></i>
+                                                    {% trans%}one wrong image{% endtrans %}
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for  message in app.flashes('errorImage')|reduce((unique, item) => item in unique ? unique : unique|merge([item]), []) %}
+                                            <div class="text-warning font-weight-bold errorImage"><i class="fas fa-exclamation-triangle"></i> {{ message }}</div>
+                                        {% endfor %}
+                                    </section>
+
+                                    <div id="row-images" class="row-images">
+
+                                        {% for image in travel.images|sort|reverse|slice(0, 5) %}
+                                            <div class="image-old item-image">
+                                                <button type="button" class="close deleteImg">&times;</button>
+                                                <img src="{{ asset('images/travel/') }}{{ image }}">
+                                                <input type="hidden" value="{{ image }}" name="oldPic[]">
+                                            </div>
+                                        {% endfor %}
+
+                                        <div class="files">
+                                            <div id="divFiles">
+                                                <input type="file" name="pic[]" class="current-file" onchange="previewFile()" accept="image/*">
+                                            </div>
+                                            <label id="btnFiles" onclick="inputClick()"><i class="fa fa-plus"></i></label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="text-danger">{{ form_errors(form.start)}}</div>
+                        <label for="validationCustom29">From where</label>
+                        <div class="input-group">
+                            {{ form_widget(form.start,{'attr':{'class':'form-control','type':'text','id':'validationCustom29'}}) }}
+                        </div>
+
+                        <div class="text-danger">{{ form_errors(form.finish)}}</div>
+                        <label for="validationCustom29">End where</label>
+                        <div class="input-group">
+                            {{ form_widget(form.finish , { 'attr' : {'class':'form-control'} }) }}
+                        </div>
+
+                        <div class="text-danger">{{ form_errors(form.startDate)}}</div>
+                        <label for="validationCustom29">Start Date</label>
+                        <div class="input-group">
+                            {{ form_widget(form.startDate , { 'attr' : {'class':'form-control'} }) }}
+                        </div>
+
+                        <div class="text-danger">{{ form_errors(form.placeNumber)}}</div>
+                        <label for="validationCustom29">Number Places</label>
+                        <div class="input-group">
+                            {{ form_widget(form.placeNumber , { 'attr' : {'class':'form-control'} }) }}
+                        </div>
+
+                        <div class="text-danger">{{ form_errors(form.price)}}</div>
+                        <label for="validationCustom29">Price</label>
+                        <div class="input-group">
+                            {{ form_widget(form.price , { 'attr' : {'class':'form-control'} }) }}
+                        </div>
+
+                        <div class="text-danger">{{ form_errors(form.description)}}</div>
+                        <label for="validationCustom29">Description</label>
+                        <div class="input-group">
+                            {{ form_widget(form.description , { 'attr' : {'class':'form-control'} }) }}
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 text-right p-0">
+                            <button type="submit" class="btn btn-primary m-0">Edit</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%  endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}
+
